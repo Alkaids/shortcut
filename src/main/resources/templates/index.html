@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport"
@@ -29,7 +30,7 @@
 </head>
 <body>
 <h1 class="mid">短地址转换</h1>
-<div id="preurl" style="display: none" th:text="${url}"></div>
+<div id="preurl" style="display: none" th:text="${domain}"></div>
 <div class="mid">
     <div><input id='url'/><button onclick='convert()' >转换为短地址</button></div>
     <div id='convertRepoDiv' style="display: none;"><a id="convertRepo" target="_blank" ></a></div>

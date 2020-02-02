@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
+
 /**
  * @ClassName IndexController
  * @Description: 页面控制器
@@ -20,9 +22,13 @@ public class IndexController {
     private ServerConfig serverConfig;
 
     @GetMapping(value = "/")
-    public ModelAndView test() {
+    public ModelAndView index() {
         ModelAndView mv = new ModelAndView("index");
-        mv.addObject("url", serverConfig.getUrl());
+        mv.addAllObjects(new HashMap<String, Object>(1, 1) {
+            {
+                this.put("domain", serverConfig.getUrl());
+            }
+        });
         return mv;
     }
 }

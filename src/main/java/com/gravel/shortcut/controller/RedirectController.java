@@ -32,8 +32,8 @@ public class RedirectController {
      * @param response
      * @return
      */
-    @GetMapping("*")
-    public RedirectView test(HttpServletRequest request, HttpServletResponse response) {
+    @GetMapping("/*")
+    public RedirectView redirect(HttpServletRequest request, HttpServletResponse response) {
         String shortcut = request.getServletPath().substring(1);
         String url = urlConvertService.revertUrl(shortcut).getData();
         return new RedirectView(url);
