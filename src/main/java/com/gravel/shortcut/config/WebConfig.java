@@ -1,15 +1,12 @@
 package com.gravel.shortcut.config;
 
-import com.gravel.shortcut.interceptor.RedirectInterceptor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import javax.annotation.Resource;
 
 /**
  * @ClassName WebConfig
- * @Description: TODO
+ * @Description: 资源配置
  * @Author gravel
  * @Date 2020/2/2
  * @Version V1.0
@@ -17,13 +14,9 @@ import javax.annotation.Resource;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    @Resource
-    private RedirectInterceptor redirectInterceptor;
-
     @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(redirectInterceptor)
-                .addPathPatterns("/**")
-                .excludePathPatterns("/", "/convert", "/revert","/error","/static/**");
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("classpath:/static/");
     }
 }
