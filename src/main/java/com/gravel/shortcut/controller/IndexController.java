@@ -21,9 +21,8 @@ public class IndexController {
 
     @GetMapping(value = "/")
     public ModelAndView test() {
-        ModelAndView mv = new ModelAndView();
+        ModelAndView mv = new ModelAndView("index");
         mv.addObject("url", serverConfig.getUrl());
-        mv.setViewName("index");
         return mv;
     }
 }

@@ -10,6 +10,10 @@ package com.gravel.shortcut.utils;
 public class SnowFlake {
 
     /**
+     * 开始时间戳，这样可以减少id长度
+     */
+    private final static long START_STAMP = 1580630554000L;
+    /**
      * 每一部分占用的位数
      */
     //序列号占用的位数
@@ -62,7 +66,7 @@ public class SnowFlake {
         }
         lastStmp = currStmp;
 
-        return currStmp << SEQUENCE_BIT << WORKER_BIT | workerId << SEQUENCE_BIT | sequence;
+        return (currStmp-START_STAMP) << SEQUENCE_BIT << WORKER_BIT | workerId << SEQUENCE_BIT | sequence;
     }
 
     private long getNextMill() {

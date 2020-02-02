@@ -3,6 +3,10 @@ package com.gravel.shortcut.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
+import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
+import com.gravel.shortcut.service.bloom.BloomFilter;
+import com.gravel.shortcut.service.bloom.BloomFilterHelper;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -38,7 +42,7 @@ public class RedisConfig {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        mapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
         serializer.setObjectMapper(mapper);
 
         template.setValueSerializer(serializer);
@@ -48,6 +52,15 @@ public class RedisConfig {
         template.setHashValueSerializer(serializer);
         template.afterPropertiesSet();
         return template;
+    }
+
+    /**
+     * 默认初始化布隆过滤器
+     * @return
+     */
+    @Bean
+    BloomFilterHelper bloomFilterHelper(){
+        return new BloomFilterHelper("shortcut",1024*1024*32, 0.0000001d);
     }
 
 }
