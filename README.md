@@ -16,7 +16,7 @@ shortCut 是一个短地址生成工具，基于 twitter 的雪花算法，给�
 </h1>
 
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Alkaids/shortcut/Java CI)![GitHub](https://img.shields.io/github/license/Alkaids/shortcut)![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/alkaids/shortcut)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Alkaids/shortcut/build)![GitHub](https://img.shields.io/github/license/Alkaids/shortcut)![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/alkaids/shortcut)
 
 ##Environment
 
