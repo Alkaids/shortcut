@@ -41,7 +41,7 @@ java -jar shortcut-0.0.1-SNAPSHOT.jar
 - [ ] 分布式部署
 - [X] 增加前端页面测试
 - [ ] url 请求统计
-- [ ] 性能测试
+- [X] 性能测试
 - [ ] 令牌桶限流
 
 
@@ -84,6 +84,26 @@ java -jar shortcut-0.0.1-SNAPSHOT.jar
 #### 重定向
 
 通过 ` curl -i http://127.0.0.1:9527/7TDhjcamrAI ` 应用会匹配末端的字符串，去redis里面拿到url，然后通过状态码 302 重定向即可。
+
+#### 性能测试
+
+使用 JMH 做性能基准测试，环境为 `CPU: 2.2 GHz Intel Core i7; Memory: 16 GB; OS: Mac OSX`。
+```
+ Options options = new OptionsBuilder().include(BenchmarkTest.class.getName()+".*")
+                .warmupIterations(1) // 预热
+                .warmupTime(TimeValue.seconds(1))
+                .measurementIterations(5)// 一共测试10轮
+                .measurementTime(TimeValue.seconds(5))// 每轮测试的时长
+                .forks(1)// 创建几个进程来测试
+                //.threads(8)// 线程数
+                .build();
+```
+测试效果不佳，目前考虑重构 ID 生成部分的代码，62 进制结果转换有点慢。
+```
+Benchmark                      Mode  Cnt   Score    Error  Units
+BenchmarkTest.httprequest     thrpt    5  34.053 ±  6.381  ops/s
+BenchmarkTest.serviceRequest  thrpt    5  37.282 ± 16.097  ops/s
+```
 
 ## Thanks
 

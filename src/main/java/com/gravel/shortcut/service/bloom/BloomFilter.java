@@ -2,18 +2,19 @@ package com.gravel.shortcut.service.bloom;
 
 import com.google.common.base.Preconditions;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 /**
  * @ClassName BloomFilter
- * @Description: TODO
+ * @Description: 布隆过滤器
  * @Author gravel
  * @Date 2020/2/2
  * @Version V1.0
  **/
-@Service
+@Component
 public class BloomFilter {
 
     @Resource
