@@ -9,11 +9,9 @@ import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.openjdk.jmh.runner.options.TimeValue;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.IOException;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -28,8 +26,6 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark)
 public class BenchmarkTest {
 
-    private ConfigurableApplicationContext context;
-
     private UrlConvertService urlConvertService;
 
     private OkHttpClient client;
@@ -38,7 +34,7 @@ public class BenchmarkTest {
             = MediaType.get("application/x-www-form-urlencoded");
 
     public static void main(String[] args) throws RunnerException {
-        Options options = new OptionsBuilder().include(BenchmarkTest.class.getName()+".*")
+        Options options = new OptionsBuilder().include(BenchmarkTest.class.getName() + ".*")
                 .warmupIterations(1) // 预热
                 .warmupTime(TimeValue.seconds(1))
                 .measurementIterations(5)// 一共测试10轮
@@ -54,8 +50,8 @@ public class BenchmarkTest {
      * setup初始化容器的时候只执行一次
      */
     @Setup(Level.Trial)
-    public void init(){
-        context = SpringApplication.run(App.class);
+    public void init() {
+        ConfigurableApplicationContext context = SpringApplication.run(App.class);
         client = new OkHttpClient();
         urlConvertService = context.getBean(UrlConvertService.class);
 
@@ -65,20 +61,20 @@ public class BenchmarkTest {
      * benchmark执行多次，此注解代表触发我们所要进行基准测试的方法
      */
     @Benchmark
-    public void httprequest(){
-        try{
+    public void httprequest() {
+        try {
             RequestBody requestBody = new FormBody.Builder()
-                    .add("url", "http://baidu.com"+ Math.random())
+                    .add("url", "http://baidu.com" + Math.random())
                     .build();
-            String repo = post("http://127.0.0.1:9527/convert",requestBody);
-        }catch (Exception e){
+            String repo = post("http://127.0.0.1:9527/convert", requestBody);
+        } catch (Exception e) {
 
         }
     }
 
     @Benchmark
-    public void serviceRequest(){
-        urlConvertService.convertUrl("http://baidu.com"+ Math.random());
+    public void serviceRequest() {
+        urlConvertService.convertUrl("http://baidu.com" + Math.random());
     }
 
 

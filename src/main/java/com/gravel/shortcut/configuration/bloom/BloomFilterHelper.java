@@ -1,4 +1,4 @@
-package com.gravel.shortcut.service.bloom;
+package com.gravel.shortcut.configuration.bloom;
 
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;

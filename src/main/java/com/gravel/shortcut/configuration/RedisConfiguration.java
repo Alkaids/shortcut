@@ -1,10 +1,10 @@
-package com.gravel.shortcut.config;
+package com.gravel.shortcut.configuration;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
-import com.gravel.shortcut.service.bloom.BloomFilterHelper;
+import com.gravel.shortcut.configuration.bloom.BloomFilterHelper;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +23,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  **/
 @Configuration
 @AutoConfigureAfter(RedisAutoConfiguration.class)
-public class RedisConfig {
+public class RedisConfiguration {
 
     /**
      * 配置自定义redisTemplate

@@ -1,11 +1,12 @@
 package com.gravel.shortcut.controller;
 
-import com.gravel.shortcut.config.ServerConfig;
+import com.gravel.shortcut.configuration.ServerInitConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 
 /**
@@ -18,17 +19,13 @@ import java.util.HashMap;
 @Controller
 public class IndexController {
 
-    @Autowired
-    private ServerConfig serverConfig;
+    @Resource
+    private ServerInitConfiguration serverInitConfiguration;
 
     @GetMapping(value = "/")
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("index");
-        mv.addAllObjects(new HashMap<String, Object>(1, 1) {
-            {
-                this.put("domain", serverConfig.getUrl());
-            }
-        });
+        mv.addObject("domain", serverInitConfiguration.getUrl());
         return mv;
     }
 }

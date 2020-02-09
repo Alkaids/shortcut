@@ -1,4 +1,4 @@
-package com.gravel.shortcut.entity;
+package com.gravel.shortcut.domain;
 
 import lombok.Data;
 

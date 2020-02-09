@@ -1,7 +1,6 @@
 package com.gravel.shortcut.service;
 
-import com.gravel.shortcut.entity.Response;
-import org.springframework.stereotype.Service;
+import com.gravel.shortcut.domain.Response;
 
 /**
  * @ClassName UrlConvertService

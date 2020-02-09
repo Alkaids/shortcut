@@ -1,11 +1,13 @@
 package com.gravel.shortcut.controller;
 
-import com.gravel.shortcut.entity.Response;
+import com.gravel.shortcut.domain.Response;
 import com.gravel.shortcut.service.UrlConvertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @ClassName MainController
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainController {
 
-    @Autowired
+    @Resource
     private UrlConvertService urlConvertService;
 
     /**

@@ -1,9 +1,8 @@
-package com.gravel.shortcut.service.bloom;
+package com.gravel.shortcut.configuration.bloom;
 
 import com.google.common.base.Preconditions;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 

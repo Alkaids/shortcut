@@ -97,12 +97,16 @@ java -jar shortcut-0.0.1-SNAPSHOT.jar
                 .threads(16)// 线程数
                 .build();
 ```
-测试效果不佳，目前考虑重构 ID 生成部分的代码，62 进制结果转换有点慢。
+测试结果如下：
 ```
 Benchmark                      Mode  Cnt    Score    Error  Units
-BenchmarkTest.httprequest     thrpt    5  400.369 ± 86.761  ops/s
-BenchmarkTest.serviceRequest  thrpt    5  430.206 ± 54.897  ops/s
+BenchmarkTest.httprequest     thrpt    5  1948.349 ± 2028.032  ops/s
+BenchmarkTest.serviceRequest  thrpt    5  3945.100 ± 1185.980  ops/s
 ```
+1. `httprequest` 是通过 `okhttp` 构造 `post` 请求，直接请求本地前端控制方法。`qps` 大概 2000 左右。
+2. `serviceRequest` 是直接调用本地方法服务得到短地址，`qps` 大概是 `http` 测试的两倍，有 4000 左右，比较理想。
+
+进一步的优化空间可以关注一下进制转换部分，有不必要的基本类型转换。
 
 ## Thanks
 

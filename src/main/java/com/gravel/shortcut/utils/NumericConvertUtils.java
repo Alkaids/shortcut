@@ -2,7 +2,7 @@ package com.gravel.shortcut.utils;
 
 /**
  * @ClassName NumericConvertUtils
- * @Description: j
+ * @Description: 参考JDK源码实现进制转换
  * @Author gravel
  * @Date 2020/1/29
  * @Version V1.0

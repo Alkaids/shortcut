@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -23,7 +24,7 @@ import java.io.IOException;
 @Controller
 public class RedirectController {
 
-    @Autowired
+    @Resource
     private UrlConvertService urlConvertService;
 
     /**
