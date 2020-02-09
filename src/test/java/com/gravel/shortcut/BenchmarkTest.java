@@ -44,7 +44,7 @@ public class BenchmarkTest {
                 .measurementIterations(5)// 一共测试10轮
                 .measurementTime(TimeValue.seconds(5))// 每轮测试的时长
                 .forks(1)// 创建几个进程来测试
-                //.threads(8)// 线程数
+                .threads(16)// 线程数
                 .build();
         new Runner(options).run();
     }

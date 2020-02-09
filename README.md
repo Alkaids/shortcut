@@ -37,13 +37,12 @@ java -jar shortcut-0.0.1-SNAPSHOT.jar
 ## Features
 
 - [X] 添加布隆过滤器判断 url 是否存在
-- [ ] Zookeeper 动态生成机器码（目前只支持单节点）
-- [ ] 分布式部署
+- [X] 性能测试
 - [X] 增加前端页面测试
 - [ ] url 请求统计
-- [X] 性能测试
 - [ ] 令牌桶限流
-
+- [ ] url 格式校验
+- [ ] 增加<url To 二维码>转换功能
 
 ## Structure
 
@@ -95,14 +94,14 @@ java -jar shortcut-0.0.1-SNAPSHOT.jar
                 .measurementIterations(5)// 一共测试10轮
                 .measurementTime(TimeValue.seconds(5))// 每轮测试的时长
                 .forks(1)// 创建几个进程来测试
-                //.threads(8)// 线程数
+                .threads(16)// 线程数
                 .build();
 ```
 测试效果不佳，目前考虑重构 ID 生成部分的代码，62 进制结果转换有点慢。
 ```
-Benchmark                      Mode  Cnt   Score    Error  Units
-BenchmarkTest.httprequest     thrpt    5  34.053 ±  6.381  ops/s
-BenchmarkTest.serviceRequest  thrpt    5  37.282 ± 16.097  ops/s
+Benchmark                      Mode  Cnt    Score    Error  Units
+BenchmarkTest.httprequest     thrpt    5  400.369 ± 86.761  ops/s
+BenchmarkTest.serviceRequest  thrpt    5  430.206 ± 54.897  ops/s
 ```
 
 ## Thanks
@@ -111,9 +110,10 @@ BenchmarkTest.serviceRequest  thrpt    5  37.282 ± 16.097  ops/s
 * [redis](https://redis.io/)
 * [guava](https://github.com/google/guava)
 * [snowflake](https://developer.twitter.com/en/docs/basics/twitter-ids)
+* [JMH](http://openjdk.java.net/projects/code-tools/jmh/)
 * 以及知乎上[这篇帖子](https://www.zhihu.com/question/29270034/answer/46446911)的作者
 
 
 ## License
 
-Code released under the [MIT License](https://github.com/twbs/bootstrap/blob/master/LICENSE).
+Code released under the [MIT License](https://github.com/Alkaids/shortcut/blob/master/LICENSE).
