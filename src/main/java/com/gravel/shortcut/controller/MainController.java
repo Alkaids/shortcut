@@ -1,6 +1,6 @@
 package com.gravel.shortcut.controller;
 
-import com.gravel.shortcut.domain.Response;
+import com.gravel.shortcut.domain.Result;
 import com.gravel.shortcut.service.UrlConvertService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,12 +28,12 @@ public class MainController {
      * @return
      */
     @PostMapping("/convert")
-    public Response<String> convertUrl(@RequestParam String url) {
+    public Result<String> convertUrl(@RequestParam String url) {
         return urlConvertService.convertUrl(url);
     }
 
     @PostMapping("/revert")
-    public Response<String> revertUrl(@RequestParam String shortUrl) {
+    public Result<?> revertUrl(@RequestParam String shortUrl) {
         return urlConvertService.revertUrl(shortUrl);
     }
 

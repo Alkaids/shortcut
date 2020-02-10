@@ -52,6 +52,10 @@
             if (this.status === 200) {
                 var res = JSON.parse(this.response);
                 console.log(res.data);
+                if(res.code !== 200){
+                    alert(res.message);
+                    return false;
+                }
                 document.getElementById("convertRepoDiv").style.display = "block";
                 var convertRepo = document.getElementById("convertRepo");
                 convertRepo.setAttribute("href",document.getElementById("preurl").innerText+"/"+res.data);
@@ -72,6 +76,10 @@
             if (this.status === 200) {
                 var res = JSON.parse(this.response);
                 console.log(res.data);
+                if(res.code !== 200){
+                    alert(res.message);
+                    return false;
+                }
                 document.getElementById("revertRepoDiv").style.display = "block";
                 var convertRepo = document.getElementById("revertRepo");
                 convertRepo.setAttribute("href",res.data);

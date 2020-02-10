@@ -39,9 +39,10 @@ java -jar shortcut-0.0.1-SNAPSHOT.jar
 - [X] 添加布隆过滤器判断 url 是否存在
 - [X] 性能测试
 - [X] 增加前端页面测试
-- [ ] url 请求统计
+- [X] 全局异常拦截
+- [X] url 格式校验
 - [ ] 令牌桶限流
-- [ ] url 格式校验
+- [ ] url 请求统计
 - [ ] 增加<url To 二维码>转换功能
 
 ## Structure
