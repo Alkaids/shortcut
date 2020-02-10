@@ -2,7 +2,6 @@ package com.gravel.shortcut.controller;
 
 import com.gravel.shortcut.domain.Response;
 import com.gravel.shortcut.service.UrlConvertService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

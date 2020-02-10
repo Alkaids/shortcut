@@ -16,9 +16,14 @@ public class SnowFlake {
     /**
      * 每一部分占用的位数
      */
-    //序列号占用的位数
+
+    /**
+     * 序列号占用的位数
+     */
     private final static long SEQUENCE_BIT = 12;
-    //机器标识占用的位数
+    /**
+     * 机器标识占用的位数
+     */
     private final static long WORKER_BIT = 10;
 
     /**
@@ -28,11 +33,17 @@ public class SnowFlake {
     private final static long MAX_SEQUENCE = ~(-1L << SEQUENCE_BIT);
 
 
-    //所在机器的标识
+    /**
+     * 所在机器的标识
+     */
     private long workerId;
-    //序列号
+    /**
+     * 序列号
+     */
     private long sequence = 0L;
-    //上一次时间戳
+    /**
+     * 上一次时间戳
+     */
     private long lastStmp = -1L;
 
     public SnowFlake(long workerId) {

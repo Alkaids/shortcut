@@ -12,11 +12,13 @@ public class NumericConvertUtils {
     /**
      * 在进制表示中的字符集合，0-Z分别用于表示最大为62进制的符号表示
      */
-    private static final char[] digits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+    private static final char[] DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
             'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
             'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+
+    private static final Integer DECIMAL = 10;
 
     /**
      * 将十进制的数字转换为指定进制的字符串
@@ -32,10 +34,10 @@ public class NumericConvertUtils {
         char[] buf = new char[32];
         int charPos = 32;
         while ((number / seed) > 0) {
-            buf[--charPos] = digits[(int) (number % seed)];
+            buf[--charPos] = DIGITS[(int) (number % seed)];
             number /= seed;
         }
-        buf[--charPos] = digits[(int) (number % seed)];
+        buf[--charPos] = DIGITS[(int) (number % seed)];
         return new String(buf, charPos, (32 - charPos));
     }
 
@@ -48,7 +50,7 @@ public class NumericConvertUtils {
      */
     public static long revertToLong(String number, int seed) {
         char[] charBuf = number.toCharArray();
-        if (seed == 10) {
+        if (seed == DECIMAL) {
             return Long.parseLong(number);
         }
 
@@ -56,9 +58,9 @@ public class NumericConvertUtils {
 
         for (int i = charBuf.length - 1; i >= 0; i--) {
             int index = 0;
-            for (int j = 0, length = digits.length; j < length; j++) {
+            for (int j = 0, length = DIGITS.length; j < length; j++) {
                 //找到对应字符的下标，对应的下标才是具体的数值
-                if (digits[j] == charBuf[i]) {
+                if (DIGITS[j] == charBuf[i]) {
                     index = j;
                 }
             }

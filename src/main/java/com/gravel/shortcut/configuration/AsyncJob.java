@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 
 /**
  * @ClassName AsyncJob
- * @Description: TODO
+ * @Description: spring 异步工具配置类
  * @Author gravel
  * @Date 2020/2/9
  * @Version V1.0

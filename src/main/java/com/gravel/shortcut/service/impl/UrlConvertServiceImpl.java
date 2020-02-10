@@ -2,13 +2,12 @@ package com.gravel.shortcut.service.impl;
 
 import com.google.common.base.Strings;
 import com.gravel.shortcut.configuration.AsyncJob;
+import com.gravel.shortcut.configuration.bloom.BloomFilter;
 import com.gravel.shortcut.domain.Response;
 import com.gravel.shortcut.service.UrlConvertService;
-import com.gravel.shortcut.configuration.bloom.BloomFilter;
 import com.gravel.shortcut.utils.NumericConvertUtils;
 import com.gravel.shortcut.utils.SnowFlake;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -45,17 +44,17 @@ public class UrlConvertServiceImpl implements UrlConvertService {
     @Override
     public Response<String> convertUrl(String url) {
         log.info("转换开始----->[url]={}",url);
+        String shortCut;
         // 如果布隆过滤器能命中，则直接返回 对应的value
         if (bloomFilter.includeByBloomFilter(url)) {
-            String shortcut;
-            if (!Strings.isNullOrEmpty(shortcut = redisTemplate.opsForValue().get(url))) {
-                return new Response<>(shortcut);
+            if (!Strings.isNullOrEmpty(shortCut = redisTemplate.opsForValue().get(url))) {
+                return new Response<>(shortCut);
             }
         }
         // 直接生成一个新的短地址，并存入缓存
         long nextId = idGenerator.nextId();
         // 转换为62进制
-        String shortCut = NumericConvertUtils.convertTo(nextId, 62);
+        shortCut = NumericConvertUtils.convertTo(nextId, 62);
         log.info("转换成功----->[shortCut]={}",shortCut);
         // 将短网址和短域名异步添加到布隆过滤器中，提升响应速度
         asyncJob.add2RedisAndBloomFilter(shortCut,url);
