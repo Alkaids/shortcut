@@ -77,7 +77,6 @@ public class UrlConvertServiceImpl implements UrlConvertService {
      */
     @Override
     public Result<String> revertUrl(String shortUrl) {
-        Preconditions.checkArgument(Validator.checkUrl(shortUrl), "[shortUrl]格式不合法！url={}", shortUrl);
         log.info("还原开始----->[shortUrl]={}", shortUrl);
         String shortcut = shortUrl.substring(shortUrl.lastIndexOf("/") + 1);
         String url = redisTemplate.opsForValue().get(shortcut);

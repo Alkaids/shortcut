@@ -6,7 +6,7 @@ shortCut 是一个短地址生成工具，基于 twitter 的雪花算法，给�
   </h4>
   <h5 align="center">
 <a href="#Environment">Environment</a>&nbsp;&nbsp;
-<a href="#Quick Start">Quick Start</a>&nbsp;&nbsp;
+<a href="#quick-start">Quick Start</a>&nbsp;&nbsp;
 <a href="#Features">Features</a>&nbsp;&nbsp;
 <a href="#Structure">Structure</a>&nbsp;&nbsp;
 <a href="#Thanks">Thanks</a>&nbsp;&nbsp;
