@@ -5,6 +5,8 @@ import com.gravel.shortcut.domain.Result;
 import com.gravel.shortcut.domain.ResultCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.BufferedImageHttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
@@ -73,6 +75,14 @@ public class WebMvcHelper implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/");
     }
 
+    /**
+     *  添加返回图片支持
+     * @param converters
+     */
+    @Override
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.add(new BufferedImageHttpMessageConverter());
+    }
     // ------------------- private 方法开始
 
     private void responseResult(HttpServletResponse response, Result<String> result) {

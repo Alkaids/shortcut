@@ -1,7 +1,5 @@
 package com.gravel.shortcut.service;
 
-import com.gravel.shortcut.domain.Result;
-
 /**
  * @ClassName UrlConvertService
  * @Description: TODO
@@ -17,7 +15,7 @@ public interface UrlConvertService {
      * @param url
      * @return
      */
-    Result<String> convertUrl(String url);
+    String convertUrl(String url);
 
     /**
      * 将短地址URL 转换为正常的地址
@@ -25,6 +23,6 @@ public interface UrlConvertService {
      * @param shortUrl
      * @return
      */
-    Result<String> revertUrl(String shortUrl);
+    String revertUrl(String shortUrl);
 
 }

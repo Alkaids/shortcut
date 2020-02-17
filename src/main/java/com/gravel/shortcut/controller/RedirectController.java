@@ -25,6 +25,7 @@ public class RedirectController {
 
     /**
      * 302 重定向到新的地址
+     *
      * @param request
      * @param response
      * @return
@@ -32,7 +33,7 @@ public class RedirectController {
     @GetMapping("/*")
     public RedirectView redirect(HttpServletRequest request, HttpServletResponse response) {
         String shortcut = request.getServletPath().substring(1);
-        String url = urlConvertService.revertUrl(shortcut).getData();
+        String url = urlConvertService.revertUrl(shortcut);
         return new RedirectView(url);
     }
 

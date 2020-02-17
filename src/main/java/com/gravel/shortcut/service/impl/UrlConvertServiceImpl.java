@@ -4,8 +4,6 @@ import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.gravel.shortcut.configuration.AsyncJob;
 import com.gravel.shortcut.configuration.bloom.BloomFilter;
-import com.gravel.shortcut.domain.Result;
-import com.gravel.shortcut.domain.ResultGenerator;
 import com.gravel.shortcut.service.UrlConvertService;
 import com.gravel.shortcut.utils.NumericConvertUtils;
 import com.gravel.shortcut.utils.SnowFlake;
@@ -46,7 +44,7 @@ public class UrlConvertServiceImpl implements UrlConvertService {
      * @return
      */
     @Override
-    public Result<String> convertUrl(String url) {
+    public String convertUrl(String url) {
         Preconditions.checkArgument(Validator.checkUrl(url), "[url]格式不合法！url={}", url);
         log.info("转换开始----->[url]={}", url);
         String shortCut;
@@ -54,7 +52,7 @@ public class UrlConvertServiceImpl implements UrlConvertService {
         if (bloomFilter.includeByBloomFilter(url)) {
             if (!Strings.isNullOrEmpty(shortCut = redisTemplate.opsForValue().get(url))) {
                 log.info("布隆过滤器命中----->[shortCut]={}", shortCut);
-                return ResultGenerator.genSuccessResult(shortCut);
+                return shortCut;
             }
         }
         // 直接生成一个新的短地址，并存入缓存
@@ -66,7 +64,7 @@ public class UrlConvertServiceImpl implements UrlConvertService {
         asyncJob.add2RedisAndBloomFilter(shortCut, url);
         // 存在的话直接返回
 
-        return ResultGenerator.genSuccessResult(shortCut);
+        return shortCut;
     }
 
     /**
@@ -76,11 +74,11 @@ public class UrlConvertServiceImpl implements UrlConvertService {
      * @return
      */
     @Override
-    public Result<String> revertUrl(String shortUrl) {
+    public String revertUrl(String shortUrl) {
         log.info("还原开始----->[shortUrl]={}", shortUrl);
         String shortcut = shortUrl.substring(shortUrl.lastIndexOf("/") + 1);
         String url = redisTemplate.opsForValue().get(shortcut);
         log.info("还原成功----->[真实Url]={}", url);
-        return ResultGenerator.genSuccessResult(url);
+        return url;
     }
 }

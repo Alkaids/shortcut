@@ -15,4 +15,3 @@ spring:
         max-idle: 8
         # 最小空闲连接数 默认0
         min-idle: 0
-

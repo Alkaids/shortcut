@@ -41,9 +41,9 @@ java -jar shortcut-0.0.1-SNAPSHOT.jar
 - [X] 增加前端页面测试
 - [X] 全局异常拦截
 - [X] url 格式校验
+- [X] 增加<url To 二维码>转换功能
 - [ ] 令牌桶限流
 - [ ] url 请求统计
-- [ ] 增加<url To 二维码>转换功能
 
 ## Structure
 
@@ -85,6 +85,8 @@ java -jar shortcut-0.0.1-SNAPSHOT.jar
 
 通过 ` curl -i http://127.0.0.1:9527/7TDhjcamrAI ` 应用会匹配末端的字符串，去redis里面拿到url，然后通过状态码 302 重定向即可。
 
+#### 二维码生成
+使用 Google 的 [zxing](https://github.com/zxing/zxing) 做的二维码转换，详细代码可参考[这里](https://github.com/Alkaids/shortcut/blob/master/src/main/java/com/gravel/shortcut/utils/QRcodeUtils.java)。
 #### 性能测试
 
 使用 JMH 做性能基准测试，环境为 `CPU: 2.2 GHz Intel Core i7; Memory: 16 GB; OS: Mac OSX`。
