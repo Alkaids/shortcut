@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "common.domain",
+      "type": "java.lang.String",
+      "description": "Description for common.domain."
+    }
+  ] }

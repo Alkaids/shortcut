@@ -23,16 +23,19 @@ shortCut 是一个短地址生成工具，基于 twitter 的雪花算法，给�
 * Java 8 +
 * Maven 3.0 +
 
-
 ## Quick Start
 
 ```
 git clone https://github.com/Alkaids/shortcut.git
+cd shortcut
 mvn -Dmaven.test.skip=true clean package
-java -jar shortcut-0.0.1-SNAPSHOT.jar
+java -jar target/shortcut-0.0.1-SNAPSHOT.jar
 ```
 
 访问 http://127.0.0.1:9527/ 即可看到测试页面。
+
+### 自定义域名
+增加 `common.domain` 配置，实际部署的时候，可以配置短地址服务域名信息。 
 
 ## Features
 
@@ -42,6 +45,7 @@ java -jar shortcut-0.0.1-SNAPSHOT.jar
 - [X] 全局异常拦截
 - [X] url 格式校验
 - [X] 增加<url To 二维码>转换功能
+- [X] 自定义域名配置
 - [ ] 令牌桶限流
 - [ ] url 请求统计
 

@@ -2,7 +2,7 @@ server:
   port: 9527
 spring:
   redis:
-    host: 127.0.0.1
+    host: gravelHost
     port: 6379
     # 密码 没有则可以不填
     password:
@@ -15,3 +15,7 @@ spring:
         max-idle: 8
         # 最小空闲连接数 默认0
         min-idle: 0
+
+# 配置域名，如果没有配，则默认是本地ip
+common:
+   domain: leebron.cc
